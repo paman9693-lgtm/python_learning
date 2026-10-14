@@ -94,12 +94,20 @@ functools
 # 55
 
 
-import functools
 
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# l = [1,2,3,4,5,6,7,8,9,10]
+# def less_than_five(n):
+#     if n<5:
+#         return n
+# res = list(filter(less_than_five,l))
+# print(res)
 
-total = functools.reduce(lambda a, b: a + b, numbers)
-average = total / len(numbers)
 
-print("Total:", total)
-print("Average:", average)
+
+
+
+
+l = [1,2,3,4,5,6,7,8,9,10]
+def sum(n1,n2):
+    return n1+n2
+res = functools.reduce(sum,l)
