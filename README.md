@@ -11,6 +11,7 @@ locally on your computer.
 - Calculate arithmetic expressions without using `eval`.
 - Analyze word, sentence, and character counts in text.
 - Explore number summaries, prime numbers, and multiplication tables.
+- Generate Fibonacci sequences with up to 50 terms.
 - Add, complete, and delete personal practice tasks.
 - Revisit your quiz results and task progress.
 

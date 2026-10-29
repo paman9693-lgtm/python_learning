@@ -109,3 +109,15 @@ def multiplication_table(number: int, limit: int = 10) -> list[str]:
     if limit < 1:
         raise ExerciseError("The table length must be at least one.")
     return [f"{number} x {index} = {number * index}" for index in range(1, limit + 1)]
+
+
+def fibonacci_sequence(count: int) -> list[int]:
+    """Return the requested number of terms from the Fibonacci sequence."""
+    if type(count) is not int:
+        raise ExerciseError("The number of terms must be a whole number.")
+    if not 1 <= count <= 50:
+        raise ExerciseError("Choose between 1 and 50 terms.")
+    sequence = [0, 1]
+    while len(sequence) < count:
+        sequence.append(sequence[-1] + sequence[-2])
+    return sequence[:count]

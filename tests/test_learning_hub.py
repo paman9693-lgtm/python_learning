@@ -7,6 +7,7 @@ from learning_hub.exercises import (
     ExerciseError,
     analyze_text,
     calculate,
+    fibonacci_sequence,
     is_prime,
     multiplication_table,
     summarize_numbers,
@@ -52,6 +53,17 @@ class ExerciseTests(unittest.TestCase):
         self.assertFalse(is_prime(1))
         self.assertFalse(is_prime(21))
         self.assertEqual(multiplication_table(4, 3)[-1], "4 x 3 = 12")
+
+    def test_generates_fibonacci_sequence(self) -> None:
+        self.assertEqual(fibonacci_sequence(1), [0])
+        self.assertEqual(fibonacci_sequence(8), [0, 1, 1, 2, 3, 5, 8, 13])
+        self.assertEqual(len(fibonacci_sequence(50)), 50)
+
+    def test_rejects_invalid_fibonacci_term_counts(self) -> None:
+        for count in (0, 51, 2.5, True):
+            with self.subTest(count=count):
+                with self.assertRaises(ExerciseError):
+                    fibonacci_sequence(count)
 
 
 class DataStoreTests(unittest.TestCase):

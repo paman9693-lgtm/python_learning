@@ -7,6 +7,7 @@ from .exercises import (
     ExerciseError,
     analyze_text,
     calculate,
+    fibonacci_sequence,
     is_prime,
     multiplication_table,
     summarize_numbers,
@@ -25,6 +26,7 @@ MENU = """
 5. Explore numbers
 6. Manage practice tasks
 7. View your learning progress
+8. Generate a Fibonacci sequence
 0. Exit
 """
 
@@ -139,6 +141,15 @@ def explore_numbers(input_fn: Callable[[str], str], print_fn: Callable[..., None
         print_fn(f"Input error: {error}")
 
 
+def explore_fibonacci(input_fn: Callable[[str], str], print_fn: Callable[..., None]) -> None:
+    try:
+        count = int(input_fn("How many Fibonacci terms (1-50)? ").strip())
+        sequence = fibonacci_sequence(count)
+        print_fn("Fibonacci sequence: " + ", ".join(map(str, sequence)))
+    except (ValueError, ExerciseError) as error:
+        print_fn(f"Input error: {error}")
+
+
 def manage_tasks(
     store: DataStore,
     input_fn: Callable[[str], str],
@@ -194,6 +205,7 @@ def main() -> None:
         "5": lambda: explore_numbers(input, print),
         "6": lambda: manage_tasks(store, input, print),
         "7": lambda: show_progress(store, print),
+        "8": lambda: explore_fibonacci(input, print),
     }
     print("Welcome! Learn a concept, try an exercise, and keep practicing.")
     while True:
@@ -204,7 +216,7 @@ def main() -> None:
             return
         action = actions.get(choice)
         if action is None:
-            print("Please enter a number from 0 to 7.")
+            print("Please enter a number from 0 to 8.")
             continue
         try:
             action()
